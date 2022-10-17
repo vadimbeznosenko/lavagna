@@ -16,14 +16,9 @@ pipeline {
     }
             steps {
                 sh 'ls la'
-            }
-            steps{
                 sh 'mvn clean'
-            }
-            steps{
                 sh 'mvn package'
             }
-
         }
         stage ('Test on Windows'){
             agent {
