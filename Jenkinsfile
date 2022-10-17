@@ -15,7 +15,7 @@ pipeline {
         MAVEN_HOME="${tool '3.5.0'}"
     }
             steps {
-                sh 'ls la'
+                sh 'ls'
                 sh 'mvn clean'
                 sh 'mvn package'
             }
