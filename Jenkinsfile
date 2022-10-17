@@ -8,10 +8,10 @@ pipeline {
             }
         tools{
         maven '3.5.0'
-        jdk 'openlogic-openjdk-jre-11.0.15+10-linux'
+        jdk 'openlogic-openjdk-jre-8u342-b07-linux'
             }
         environment {
-        JAVA_HOME="${tool 'openlogic-openjdk-jre-11.0.15+10-linux'}"
+        JAVA_HOME="${tool 'openlogic-openjdk-jre-8u342-b07-linux'}"
         MAVEN_HOME="${tool '3.5.0'}"
     }
             steps {
@@ -26,10 +26,10 @@ pipeline {
             }
                tools{
         maven '3.5.0'
-        jdk 'openlogic-openjdk-jre-11.0.15+10-windows'
+        jdk 'openlogic-openjdk-jre-8u342-b07-linux'
             }
         environment {
-        JAVA_HOME="${tool 'openlogic-openjdk-jre-11.0.15+10-windows'}"
+        JAVA_HOME="${tool 'openlogic-openjdk-jre-8u342-b07-linux'}"
         MAVEN_HOME="${tool '3.5.0'}"
         }
             steps {
