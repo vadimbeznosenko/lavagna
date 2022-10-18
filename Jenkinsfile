@@ -24,8 +24,8 @@ pipeline {
         jdk 'openlogic-openjdk-8u342-b07-windows'
             }
             steps {
-                powershell "mvn clean"
-                powershell "mvn package"
+                bat "mvn clean"
+                bat "mvn package"
                 
             }
             }
