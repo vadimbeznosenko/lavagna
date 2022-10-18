@@ -10,8 +10,8 @@ pipeline {
         jdk 'Java_8'
             }
             steps {
-                powershell "mvn clean"
-                powershell "mvn package"
+                powershell "mvn clean -X"
+                powershell "mvn package -X"
                 
             }
             }
