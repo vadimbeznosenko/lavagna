@@ -9,9 +9,6 @@ pipeline {
         maven '3.5.0'
         jdk 'openlogic-openjdk-8u342-b07-linux'
             }
-            environment{
-            PATH=$PATH:$JAVA_HOME/bin
-            }
             steps {
                 sh "PATH=$PATH:$JAVA_HOME/bin"
                 sh 'mvn clean'
