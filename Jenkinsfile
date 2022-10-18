@@ -13,7 +13,7 @@ pipeline {
                 powershell "mvn clean"
                 powershell "mvn package"
                 
-                stash(name: 'myStash', includes: 'target\lavagna-1.1.10-SNAPSHOT-distribution.zip')
+                stash includes: 'target/lavagna-1.1.10-SNAPSHOT-distribution.zip', name: 'binary'
 }            
             }
         stage ('Build on Linux') {
@@ -28,7 +28,7 @@ pipeline {
                 sh "PATH=$PATH:$JAVA_HOME/bin"
                 sh 'mvn clean'
                 sh 'mvn package'
-                unstash 'myStash'
+                unstash 'binary'
             }
         }
 
