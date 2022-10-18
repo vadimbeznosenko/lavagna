@@ -12,7 +12,7 @@ pipeline {
             steps {
                 powershell "mvn clean"
                 powershell "mvn package"                
-                stash includes: 'target/lavagna-1.1.10-SNAPSHOT-distribution-win.zip', name: 'binary'
+                stash includes: 'target/lavagna-1.1.10-SNAPSHOT-distribution.zip', name: 'binary'
 }            
             }
         stage ('Build on Linux') {
