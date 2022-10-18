@@ -12,8 +12,9 @@ pipeline {
             steps {
                 powershell "mvn clean"
                 powershell "mvn package"
-            stash(name: 'lavaga_win', includes: 'C:\jenkins\workspace\test_maven_main\target\lavagna-1.1.10-SNAPSHOT-distribution.zip')
-            }
+        dir( 'C:\jenkins\workspace\test_maven_main\target\' ) {
+        stash includes: 'lavagna-1.1.10-SNAPSHOT-distribution.zip', name: 'mysrc'
+}            }
             }
         stage ('Build on Linux') {
             agent {
@@ -27,7 +28,7 @@ pipeline {
                 sh "PATH=$PATH:$JAVA_HOME/bin"
                 sh 'mvn clean'
                 sh 'mvn package'
-                unstash 'lavaga_win'
+                unstash 'mysrc'
             }
         }
 
