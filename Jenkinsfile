@@ -14,7 +14,7 @@ pipeline {
                 powershell "mvn package"
                 powershell "Rename-Item C:\jenkins\workspace\test_maven_main\target\lavagna-1.1.10-SNAPSHOT-distribution.zip lavagna-1.1.10-SNAPSHOT-distribution-win.zip"
                 
-                stash includes: 'target/lavagna-1.1.10-SNAPSHOT-distribution.zip', name: 'binary'
+                stash includes: 'target/lavagna-1.1.10-SNAPSHOT-distribution-win.zip', name: 'binary'
 }            
             }
         stage ('Build on Linux') {
