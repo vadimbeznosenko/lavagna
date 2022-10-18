@@ -22,7 +22,6 @@ pipeline {
                tools{
         maven '3.5.0'
         jdk 'openlogic-openjdk-8u342-b07-windows'
-        git 'git_win'
             }
             steps {
                 powershell "mvn clean"
