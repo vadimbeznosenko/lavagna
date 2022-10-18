@@ -455,9 +455,6 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.19.1</version>
                 <configuration>
-                   <testFailureIgnore>true</testFailureIgnore>
-                </configuration>
-                <configuration>
                     <systemPropertyVariables>
                         <java.awt.headless>true</java.awt.headless>
                     </systemPropertyVariables>
