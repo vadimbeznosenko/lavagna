@@ -14,7 +14,7 @@ pipeline {
                 powershell "mvn package"
         dir( 'C:\jenkins\workspace\test_maven_main\target\' ) {
         stash includes: 'lavagna-1.1.10-SNAPSHOT-distribution.zip', name: 'mysrc'
-}            }
+}            
             }
         stage ('Build on Linux') {
             agent {
