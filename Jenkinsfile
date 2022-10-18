@@ -1,17 +1,19 @@
 pipeline {
     agent none 
-  
     stages {
         stage ('Test on Linux') {
-            agent{
+            agent {
                 label 'agent_lin'
             }
-        tools{
+        tools {
         maven '3.5.0'
-        jdk 'openlogic-openjdk-jre-8u342-b07-linux'
+        jdk 'openlogic-openjdk-8u342-b07-linux'
+            }
+            environment{
+            PATH=$PATH:$JAVA_HOME/bin
             }
             steps {
-                sh 'ls'
+                sh "PATH=$PATH:$JAVA_HOME/bin"
                 sh 'mvn clean'
                 sh 'mvn package'
             }
@@ -22,7 +24,7 @@ pipeline {
             }
                tools{
         maven '3.5.0'
-        jdk 'openlogic-openjdk-jre-8u342-b07-linux'
+        jdk 'openlogic-openjdk-8u342-b07-linux'
             }
             steps {
                 powershell "dir"
