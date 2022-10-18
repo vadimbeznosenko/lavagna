@@ -399,7 +399,7 @@
                         <configuration>
                             <appendAssemblyId>false</appendAssemblyId>
                             <descriptors>
-                                <descriptor>szip.xml</descriptor>
+                                <descriptor>zip.xml</descriptor>
                             </descriptors>
                         </configuration>
                     </execution>
