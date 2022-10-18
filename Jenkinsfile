@@ -29,6 +29,7 @@ pipeline {
                 sh 'mvn clean'
                 sh 'mvn package'
                 unstash 'binary'
+                sh 'tree'
             }
         }
 
