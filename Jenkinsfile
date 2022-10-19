@@ -14,6 +14,11 @@ pipeline {
                 powershell "mvn package"                
                 stash includes: 'target/lavagna-1.1.10-SNAPSHOT-distribution.zip', name: 'binary'
 }            
+        post { 
+        always { 
+            cleanWs()
+        }
+        }
             }
         stage ('Build on Linux') {
             agent {
