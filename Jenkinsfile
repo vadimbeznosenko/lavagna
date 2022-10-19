@@ -24,14 +24,14 @@ pipeline {
             agent {
                 label 'agent_lin'
             }
-            environment {
-            CI = true
-            ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
-  }
         tools {
         maven '3.5.0'
         jdk 'openlogic-openjdk-8u342-b07-linux'
             }
+            environment {
+            CI = true
+            ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
+  }
             steps {
                 sh "PATH=$PATH:$JAVA_HOME/bin"
                 sh 'mvn clean'
