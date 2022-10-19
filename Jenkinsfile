@@ -37,7 +37,7 @@ pipeline {
                 sh "PATH=$PATH:$JAVA_HOME/bin"
                 sh 'mvn clean'
                 sh 'mvn package'
-                zip zipFile: '/var/lib/jenkins/workspace/test_maven_main/build/lin64/lin.zip', glob : '/var/lib/jenkins/workspace/test_maven_main_2/target/lavagna-jetty-console.war'
+                zip zipFile: '/var/lib/jenkins/workspace/test_maven_main/build/lin64/lin.zip', glob : '/var/lib/jenkins/workspace/test_maven_main_2/target/lavagna-jetty-console.war', overwrite : true
                 dir('/var/lib/jenkins/workspace/test_maven_main/build/win64/') {
                 unstash 'binarywin'
                 }
