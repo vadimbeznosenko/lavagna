@@ -39,9 +39,8 @@ pipeline {
                 sh 'mvn package'
                 zip zipFile: '/build/lin64/lin.zip', glob : '/var/lib/jenkins/workspace/test_maven_main_2/target/lavagna-jetty-console.war'
                 dir('/build/win64/') {
-                unstash 'binarywin'
-        }
-                sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN  /build/ SNAPSHOTS/"
+                unstash 'binarywin'}
+                sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN  build/ SNAPSHOTS/"
             }
         post { 
         always { 
