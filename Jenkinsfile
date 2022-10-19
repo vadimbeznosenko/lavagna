@@ -39,7 +39,6 @@ pipeline {
                 dir('/var/lib/jenkins/workspace/test_maven_main/windows_art') {
                 unstash 'binarywin'
         }
-                def ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
                 sh ('jf rt upload --url http://192.168.31.13:8082/ --access-token ${ARTIFACTORY_ACCESS_TOKEN} /var/lib/jenkins/workspace/test_maven_main_2/target/lavagna-1.1.10-SNAPSHOT-distribution.zip test/')
 
             }
