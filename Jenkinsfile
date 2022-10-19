@@ -39,7 +39,7 @@ pipeline {
                 dir('/var/lib/jenkins/workspace/test_maven_main/windows_art') {
                 unstash 'binarywin'
         }
-                sh "jf rt upload --url http://192.168.31.13:8082//artifactory/ --access-token ${ARTIFACTORY_ACCESS_TOKEN} /var/lib/jenkins/workspace/test_maven_main_2/target/lavagna-1.1.10-SNAPSHOT-distribution.zip SNAPSHOTS/"
+                sh ("jf rt upload --url http://192.168.31.13:8082//artifactory/ --access-token $ARTIFACTORY_ACCESS_TOKEN /var/lib/jenkins/workspace/test_maven_main_2/target/lavagna-1.1.10-SNAPSHOT-distribution.zip SNAPSHOTS/")
 
             }
         post { 
