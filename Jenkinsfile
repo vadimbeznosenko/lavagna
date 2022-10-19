@@ -36,9 +36,6 @@ pipeline {
                 dir('/var/lib/jenkins/workspace/test_maven_main/windows_art') {
                 unstash 'binary_win'
         }
-        dir('/var/lib/jenkins/workspace/test_maven_main/lin_art') {
-                unstash 'binary_lin'
-        }
             }
         post { 
         always { 
