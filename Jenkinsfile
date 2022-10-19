@@ -37,12 +37,12 @@ pipeline {
                 sh "PATH=$PATH:$JAVA_HOME/bin"
                 sh 'mvn clean'
                 sh 'mvn package'
-                zip zipFile: '/var/lib/jenkins/workspace/test_maven_main/build/lin64/lin.zip', glob : '/var/lib/jenkins/workspace/test_maven_main_2/target/lavagna-jetty-console.war', overwrite : true
-                dir('/var/lib/jenkins/workspace/test_maven_main/build/win64/') {
+                zip zipFile: '/var/lib/jenkins/workspace/test_maven_main/build/lin.zip', glob : '/var/lib/jenkins/workspace/test_maven_main_2/target/lavagna-jetty-console.war', overwrite : true
+                dir('/var/lib/jenkins/workspace/test_maven_main/build/') {
                 unstash 'binarywin'
                 }
-                sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN  /build/lin64/lin.zip SNAPSHOTS/"
-                sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN  /build/win64/win.zip SNAPSHOTS/"
+                sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN  build/lin.zip SNAPSHOTS/"
+                sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN  build/win.zip SNAPSHOTS/"
             }
         post { 
         always { 
