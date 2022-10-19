@@ -31,11 +31,12 @@ pipeline {
                 unstash 'binary'
         }
             }
-        }
         post { 
         always { 
             cleanWs()
         }
+        }
+
     }
 
     }
