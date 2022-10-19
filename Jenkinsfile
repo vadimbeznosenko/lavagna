@@ -38,8 +38,9 @@ pipeline {
                 sh 'mvn package'
                 dir('/var/lib/jenkins/workspace/test_maven_main/windows_art') {
                 unstash 'binarywin'
-                sh 'jfrog rt upload --url http://192.168.31.13:8082//artifactory/ --access-token ${ARTIFACTORY_ACCESS_TOKEN} /var/lib/jenkins/workspace/test_maven_main_2/target/lavagna-1.1.10-SNAPSHOT-distribution.zip SNAPSHOTS/'
         }
+                sh 'jfrog rt upload --url http://192.168.31.13:8082//artifactory/ --access-token ${ARTIFACTORY_ACCESS_TOKEN} /var/lib/jenkins/workspace/test_maven_main_2/target/lavagna-1.1.10-SNAPSHOT-distribution.zip SNAPSHOTS/'
+
             }
         post { 
         always { 
