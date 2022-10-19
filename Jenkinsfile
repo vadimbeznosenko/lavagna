@@ -32,9 +32,12 @@ pipeline {
                 sh "PATH=$PATH:$JAVA_HOME/bin"
                 sh 'mvn clean'
                 sh 'mvn package'
-                stash includes: '/var/lib/jenkins/workspace/test_maven_main_2/target/lavagna-1.1.10-SNAPSHOT-distribution.zip', name: 'binary_lin'
+                stash includes: '/target/lavagna-1.1.10-SNAPSHOT-distribution.zip', name: 'binary_lin'
                 dir('/var/lib/jenkins/workspace/test_maven_main/windows_art') {
                 unstash 'binary_win'
+        }
+        dir('/var/lib/jenkins/workspace/test_maven_main/lin_art') {
+                unstash 'binary_lin'
         }
             }
         post { 
