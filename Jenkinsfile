@@ -37,10 +37,11 @@ pipeline {
                 sh "PATH=$PATH:$JAVA_HOME/bin"
                 sh 'mvn clean'
                 sh 'mvn package'
-                dir('/var/lib/jenkins/workspace/test_maven_main/target/') {
+                zip zipFile: 'lin.zip',  dir: '/build/lin64/' glob : '/var/lib/jenkins/workspace/test_maven_main_2/target/lavagna-jetty-console.war'
+                dir('/build/win64/') {
                 unstash 'binarywin'
         }
-                sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN target/lavagna-1.1.10-SNAPSHOT-distribution.zip SNAPSHOTS/"
+                sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN  /build/ SNAPSHOTS/"
             }
         post { 
         always { 
