@@ -11,8 +11,9 @@ pipeline {
             }
             steps {
                 powershell "mvn clean"
-                powershell "mvn package"                
-                stash includes: 'target/lavagna-1.1.10-SNAPSHOT-distribution.zip', name: 'binarywin'
+                powershell "mvn package"
+                zip zipFile: 'win.zip', archive: false, dir: 'target\lavagna-jetty-console.war'             
+                stash includes: 'target\win.zip', name: 'binarywin'
 }            
         post { 
         always { 
@@ -36,11 +37,10 @@ pipeline {
                 sh "PATH=$PATH:$JAVA_HOME/bin"
                 sh 'mvn clean'
                 sh 'mvn package'
-                sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN target/lavagna-1.1.10-SNAPSHOT-distribution.zip SNAPSHOTS/"
-                dir('/var/lib/jenkins/workspace/test_maven_main/windows_art/') {
+                dir('/var/lib/jenkins/workspace/test_maven_main/target/') {
                 unstash 'binarywin'
         }
-                sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN windows_art/target/lavagna-1.1.10-SNAPSHOT-distribution.zip SNAPSHOTS/"
+                sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN target/lavagna-1.1.10-SNAPSHOT-distribution.zip SNAPSHOTS/"
             }
         post { 
         always { 
