@@ -36,11 +36,11 @@ pipeline {
                 sh "PATH=$PATH:$JAVA_HOME/bin"
                 sh 'mvn clean'
                 sh 'mvn package'
-                sh "echo $ARTIFACTORY_ACCESS_TOKEN"
-                sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN target/lavagna-1.1.10-SNAPSHOT-distribution.zip test/"
+                sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN target/lavagna-1.1.10-SNAPSHOT-distribution.zip SNAPSHOTS/"
                 dir('/var/lib/jenkins/workspace/test_maven_main/windows_art') {
                 unstash 'binarywin'
         }
+                sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN /windows_art/target/lavagna-1.1.10-SNAPSHOT-distribution.zip SNAPSHOTS/"
             }
         post { 
         always { 
