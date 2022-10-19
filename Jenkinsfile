@@ -12,7 +12,7 @@ pipeline {
             steps {
                 powershell "mvn clean"
                 powershell "mvn package"                
-                stash includes: 'target/lavagna-1.1.10-SNAPSHOT-distribution.zip', name: 'binary'
+                stash includes: 'target/lavagna-1.1.10-SNAPSHOT-distribution.zip', name: 'binary_win'
 }            
         post { 
         always { 
@@ -32,8 +32,12 @@ pipeline {
                 sh "PATH=$PATH:$JAVA_HOME/bin"
                 sh 'mvn clean'
                 sh 'mvn package'
-                dir('/var/lib/jenkins/windows_art/') {
-                unstash 'binary'
+                stash includes: '/var/lib/jenkins/workspace/test_maven_main/target/lavagna-1.1.10-SNAPSHOT-distribution.zip', name: 'binary_lin'
+                dir('/var/lib/jenkins/workspace/test_maven_main/windows_art') {
+                unstash 'binary_win'
+        }
+        dir('/var/lib/jenkins/workspace/test_maven_main/lin_art') {
+                unstash 'binary_lin'
         }
             }
         post { 
