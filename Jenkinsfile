@@ -33,7 +33,6 @@ pipeline {
                 sh 'mvn clean'
                 sh 'mvn package'
                 stash includes: '/target/lavagna-1.1.10-SNAPSHOT-distribution.zip', name: 'binarylin'
-            }
                 dir('/var/lib/jenkins/workspace/test_maven_main/windows_art') {
                 unstash 'binarywin'
         }
