@@ -12,7 +12,7 @@ pipeline {
             steps {
                 powershell "mvn clean"
                 powershell "mvn package"
-                Zip zipFile: 'lavagna-jetty-console.war.zip',  dir: 'target'
+                zip zipFile: 'win.zip',  glob : 'C:\\jenkins\\workspace\\test_maven_main_2\\target\\lavagna-jetty-console.war'
                 stash includes: 'win.zip', name: 'binarywin'
 }            
         post { 
