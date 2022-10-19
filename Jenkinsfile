@@ -27,7 +27,9 @@ pipeline {
                 sh "PATH=$PATH:$JAVA_HOME/bin"
                 sh 'mvn clean'
                 sh 'mvn package'
+                dir('/var/lib/jenkins/windows_art/') {
                 unstash 'binary'
+        }
             }
         }
 
