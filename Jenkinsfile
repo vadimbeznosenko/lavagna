@@ -41,7 +41,7 @@ pipeline {
                 dir('/var/lib/jenkins/workspace/test_maven_main_2/build/win64/') {
                 unstash 'binarywin'
                 }
-                sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN  --recursive=false --regexp=true /var/lib/jenkins/workspace/test_maven_main_2/build/* --recursive=false SNAPSHOTS/"
+                sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN  --recursive=false --regexp=true /var/lib/jenkins/workspace/test_maven_main_2/build/*  SNAPSHOTS/"
             }
         post { 
         always { 
