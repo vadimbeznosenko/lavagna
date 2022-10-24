@@ -21,6 +21,7 @@ pipeline {
         }
 
     }
+        }
 
     stages {
         stage ('deploy on Windows'){
