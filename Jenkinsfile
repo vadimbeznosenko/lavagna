@@ -7,7 +7,8 @@ pipeline {
         label 'agent_lin'
             }
       steps {
-        deleteDir()
+        cleanWs()
+        }
       }
     }
         stage('clean_workspace_windows') {
@@ -15,7 +16,8 @@ pipeline {
         label 'agent_win'
             }
       steps {
-        deleteDir()
+        cleanWs()
+        }
       }
     }
 
