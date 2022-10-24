@@ -1,13 +1,13 @@
 pipeline {
      agent none 
      stages {
-
+        
     stage('clean_workspace_linux') {
         agent {
         label 'agent_lin'
             }
       steps {
-        cleanWs()
+        deleteDir()
         }
       }
 
@@ -16,7 +16,7 @@ pipeline {
         label 'agent_win'
             }
       steps {
-        cleanWs()
+        deleteDir()
         }
       }
 
