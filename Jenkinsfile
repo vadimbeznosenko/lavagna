@@ -57,7 +57,7 @@ pipeline {
                 unstash 'binarylin'
                 }
                  bat "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN   build\\lin\\lin${BUILD_NUMBER}.zip  SNAPSHOTS/"
-}
+ }
         post { 
         always { 
             cleanWs()
