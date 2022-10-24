@@ -2,19 +2,6 @@ pipeline {
      agent none 
      stages {
 
-        stage ('cleane up workspace linux'){
-            agent {
-                label 'agent_lin'
-            }
-            steps{
-            }
-            
-        post { 
-        always { 
-            cleanWs()
-        }
-        }
-        }
         stage ('Build on Linux') {
             agent {
                 label 'agent_lin'
@@ -28,18 +15,6 @@ pipeline {
                 sh 'mvn package'
                 zip zipFile: "lin${BUILD_NUMBER}.zip",  glob :'/var/lib/jenkins/workspace/test_maven_main_2/target/lavagna-jetty-console.war'
                 stash includes: "lin${BUILD_NUMBER}.zip", name: 'binarylin'
-            }
-        post { 
-        always { 
-            cleanWs()
-        }
-        }
-        }
-        stage ('cleane up workspace Windows'){
-            agent {
-                label 'agent_win'
-            }
-            steps{
             }
         post { 
         always { 
