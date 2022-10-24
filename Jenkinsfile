@@ -14,14 +14,12 @@ pipeline {
                 sh 'mvn package'
                 zip zipFile: "lin${BUILD_NUMBER}.zip",  glob :'/var/lib/jenkins/workspace/test_maven_main_2/target/lavagna-jetty-console.war'
                 stash includes: "lin${BUILD_NUMBER}.zip", name: 'binarylin'
-
+            }
         post { 
         always { 
             cleanWs()
         }
         }
-
-    }
         }
         stage ('deploy on Windows'){
             agent {
@@ -40,7 +38,7 @@ pipeline {
                 unstash 'binarylin'
                 }
                  bat "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN   build\\win64\\lin${BUILD_NUMBER}.zip  SNAPSHOTS/"
-}            
+}
 
         post { 
         always { 
@@ -48,4 +46,5 @@ pipeline {
         }
         }
     }
+}
 }
