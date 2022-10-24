@@ -1,6 +1,18 @@
 pipeline {
      agent none 
      stages {
+
+        stage ('cleane up workspace linux'){
+            agent {
+                label 'agent_lin'
+            }
+            
+        post { 
+        always { 
+            cleanWs()
+        }
+        }
+        }
         stage ('Build on Linux') {
             agent {
                 label 'agent_lin'
@@ -15,6 +27,17 @@ pipeline {
                 zip zipFile: "lin${BUILD_NUMBER}.zip",  glob :'/var/lib/jenkins/workspace/test_maven_main_2/target/lavagna-jetty-console.war'
                 stash includes: "lin${BUILD_NUMBER}.zip", name: 'binarylin'
             }
+        post { 
+        always { 
+            cleanWs()
+        }
+        }
+        }
+        stage ('cleane up workspace Windows'){
+            agent {
+                label 'agent_win'
+            }
+
         post { 
         always { 
             cleanWs()
@@ -39,7 +62,6 @@ pipeline {
                 }
                  bat "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN   build\\lin\\lin${BUILD_NUMBER}.zip  SNAPSHOTS/"
 }
-
         post { 
         always { 
             cleanWs()
