@@ -23,8 +23,6 @@ pipeline {
 
     }
         }
-
-    stages {
         stage ('deploy on Windows'){
             agent {
                 label 'agent_win'
