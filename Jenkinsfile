@@ -12,7 +12,7 @@ pipeline {
                 sh "PATH=$PATH:$JAVA_HOME/bin"
                 sh 'mvn clean'
                 sh 'mvn package'
-                zip zipFile: "lin${BUILD_NUMBER}.zip",  glob :/var/lib/jenkins/workspace/test_maven_main_2/target/lavagna-jetty-console.war
+                zip zipFile: "lin${BUILD_NUMBER}.zip",  glob :'/var/lib/jenkins/workspace/test_maven_main_2/target/lavagna-jetty-console.war'
                 stash includes: "lin${BUILD_NUMBER}.zip", name: 'binarylin'
 
         post { 
