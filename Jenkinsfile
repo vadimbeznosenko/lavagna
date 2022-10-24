@@ -16,13 +16,12 @@
                 sh 'mvn package'
                 zip zipFile: "lin${BUILD_NUMBER}.zip",  glob :/var/lib/jenkins/workspace/test_maven_main_2/target/lavagna-jetty-console.war
                 stash includes: "lin${BUILD_NUMBER}.zip", name: 'binarylin'
+
         post { 
         always { 
             cleanWs()
         }
         }
-
-    }
 
     }
 
