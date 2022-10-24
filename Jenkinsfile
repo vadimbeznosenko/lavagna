@@ -6,6 +6,8 @@ pipeline {
             agent {
                 label 'agent_lin'
             }
+            steps{
+            }
             
         post { 
         always { 
@@ -37,7 +39,8 @@ pipeline {
             agent {
                 label 'agent_win'
             }
-
+            steps{
+            }
         post { 
         always { 
             cleanWs()
