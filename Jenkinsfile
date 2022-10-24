@@ -1,5 +1,6 @@
 pipeline {
      agent none 
+     stages {
         stage ('Build on Linux') {
             agent {
                 label 'agent_lin'
@@ -50,4 +51,5 @@ pipeline {
         }
             }
 
+}
 }
