@@ -19,7 +19,6 @@ pipeline {
         cleanWs()
         }
       }
-    }
 
         stage ('Build on Linux') {
             agent {
@@ -65,5 +64,4 @@ pipeline {
         }
         }
     }
-}
 }
