@@ -31,7 +31,6 @@ pipeline {
         maven '3.5.0'
         jdk 'Java_8'
             }
-                        }
             environment {
             CI = true
             ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
@@ -42,6 +41,7 @@ pipeline {
                 }
                  bat "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN   build\\win64\\lin${BUILD_NUMBER}.zip  SNAPSHOTS/"
 }            
+
         post { 
         always { 
             cleanWs()
