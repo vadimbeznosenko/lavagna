@@ -1,3 +1,5 @@
+pipeline {
+     agent none 
         stage ('Build on Linux') {
             agent {
                 label 'agent_lin'
@@ -5,11 +7,6 @@
         tools {
         maven '3.5.0'
         jdk 'openlogic-openjdk-8u342-b07-linux'
-            }
-            environment {
-            CI = true
-            ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
-  }
             steps {
                 sh "PATH=$PATH:$JAVA_HOME/bin"
                 sh 'mvn clean'
@@ -34,6 +31,11 @@
         maven '3.5.0'
         jdk 'Java_8'
             }
+                        }
+            environment {
+            CI = true
+            ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
+  }
             steps {
                 dir('C:\\jenkins\\workspace\\test_maven_main_2\\build\\lin') {
                 unstash 'binarylin'
@@ -47,4 +49,6 @@
         }
             }
 
+}
+        }
 }
