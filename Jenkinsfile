@@ -7,7 +7,7 @@ pipeline {
         label 'agent_lin'
             }
       steps {
-        deleteDir()
+        cleanWs()
         }
       }
 
@@ -16,7 +16,7 @@ pipeline {
         label 'agent_win'
             }
       steps {
-        deleteDir()
+        cleanWs()
         }
       }
 
