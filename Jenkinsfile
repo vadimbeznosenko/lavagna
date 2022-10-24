@@ -10,7 +10,7 @@ pipeline {
         deleteDir()
         }
       }
-    }
+
         stage('clean_workspace_windows') {
         agent {
         label 'agent_win'
@@ -64,4 +64,5 @@ pipeline {
         }
         }
     }
+}
 }
