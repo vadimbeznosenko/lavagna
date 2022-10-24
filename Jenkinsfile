@@ -1,5 +1,16 @@
 pipeline {
     agent none 
+
+    stages {
+                stage (''clean_workspace'){
+            agent {
+                label 'any'
+            }
+    stage('clean_workspace_and_checkout_source') {
+      steps {
+        deleteDir()
+      }
+    }
     stages {
         stage ('Build on Windows'){
             agent {
