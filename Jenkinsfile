@@ -31,6 +31,16 @@ pipeline {
         }
         }
         }
+
+        stage('clean_workspace_windows') {
+        agent {
+        label 'agent_win'
+            }
+      steps {
+        deleteDir()
+        }
+      }
+
         stage ('deploy on Windows'){
             agent {
                 label 'agent_win'
