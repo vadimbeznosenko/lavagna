@@ -64,8 +64,9 @@ environment {
             agent {
                 label 'agent_lin'
             }
-            steps {
+            steps { catchError{
             sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN   build/win64/win${BUILD_NUMBER}.zip  SNAPSHOTS/"
+            }
             }
         
         post { 
