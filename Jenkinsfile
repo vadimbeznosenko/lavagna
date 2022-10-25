@@ -15,12 +15,15 @@ environment {
         maven '3.5.0'
         jdk 'Java_8'
             }
+
             steps {
-                
+                 catchError{
                 bat "mvn clean"
                 bat "mvn package"
+                currentBuild.result = 'FAILURE'
                 zip zipFile: "win${BUILD_NUMBER}.zip",  glob : 'C:\\jenkins\\workspace\\test_maven_main_2\\target\\lavagna-jetty-console.war'
                 stash includes: "win${BUILD_NUMBER}.zip", name: 'binarywin'
+                 }
 }            
         post { 
         always { 
