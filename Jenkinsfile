@@ -1,6 +1,11 @@
 pipeline {
     agent none 
 
+environment {
+            CI = true
+            ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
+  }
+
     stages {
         stage ('Build on Windows'){
             agent {
@@ -30,10 +35,6 @@ pipeline {
         maven '3.5.0'
         jdk 'openlogic-openjdk-8u342-b07-linux'
             }
-            environment {
-            CI = true
-            ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
-  }
             steps {
                 sh "PATH=$PATH:$JAVA_HOME/bin"
                 sh 'mvn clean'
@@ -42,16 +43,36 @@ pipeline {
                 dir('/var/lib/jenkins/workspace/test_maven_main_2/build/win64/') {
                 unstash 'binarywin'
                 }
-                sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN   build/lin64/lin${BUILD_NUMBER}.zip  SNAPSHOTS/"
                 sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN   build/win64/win${BUILD_NUMBER}.zip  SNAPSHOTS/"
             }
+
+        }
+        stage ('Deploy linux artifact') {
+            agent {
+                label 'agent_lin'
+            }
+            steps {
+            sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN   build/lin64/lin${BUILD_NUMBER}.zip  SNAPSHOTS/"
+
+            }
+
+    }
+
+        stage ('Deploy windows artifact') {
+            agent {
+                label 'agent_lin'
+            }
+            steps {
+            sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN   build/lin64/lin${BUILD_NUMBER}.zip  SNAPSHOTS/"
+            }
+        
         post { 
         always { 
             cleanWs()
         }
         }
-
     }
+
 
     }
 
