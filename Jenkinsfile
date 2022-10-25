@@ -1,5 +1,5 @@
 pipeline {
-    agent none 
+    agent agent_lin 
 
 environment {
             CI = true
