@@ -16,12 +16,12 @@ environment {
         jdk 'Java_8'
             }
             steps {
-                 catchError{
+                
                 bat "mvn clean"
-                bat "mvn package"}
+                bat "mvn package"
                 zip zipFile: "win${BUILD_NUMBER}.zip",  glob : 'C:\\jenkins\\workspace\\test_maven_main_2\\target\\lavagna-jetty-console.war'
                 stash includes: "win${BUILD_NUMBER}.zip", name: 'binarywin'
-}            }
+}            
         post { 
         always { 
             cleanWs()
