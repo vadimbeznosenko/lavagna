@@ -1,5 +1,5 @@
 pipeline {
-    agent label
+    agent none
 
 environment {
             CI = true
