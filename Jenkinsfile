@@ -1,5 +1,5 @@
 pipeline {
-    agent agent_lin 
+    agent {agent_lin agent_win}
 
 environment {
             CI = true
