@@ -33,7 +33,6 @@ environment {
             cleanWs()
         }
         }
-            }
         stage ('Build on Linux') {
             agent {
                 label 'agent_lin'
@@ -79,6 +78,6 @@ environment {
         }
     }
 
-
-    }
+}
+ }
 
