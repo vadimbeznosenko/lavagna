@@ -1,5 +1,5 @@
 pipeline {
-    agent {agent_lin agent_win}
+    agent label
 
 environment {
             CI = true
