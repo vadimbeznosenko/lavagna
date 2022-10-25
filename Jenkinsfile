@@ -43,7 +43,6 @@ environment {
                 dir('/var/lib/jenkins/workspace/test_maven_main_2/build/win64/') {
                 unstash 'binarywin'
                 }
-                sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN   build/win64/win${BUILD_NUMBER}.zip  SNAPSHOTS/"
             }
 
         }
@@ -63,7 +62,7 @@ environment {
                 label 'agent_lin'
             }
             steps {
-            sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN   build/lin64/lin${BUILD_NUMBER}.zip  SNAPSHOTS/"
+            sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN   build/win64/win${BUILD_NUMBER}.zip  SNAPSHOTS/"
             }
         
         post { 
