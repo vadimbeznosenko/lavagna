@@ -47,7 +47,7 @@ environment {
             }
 
         
-        stage ('Deploy linux artifact') {
+        stage ('Deploy artifact') {
             agent {
                 label 'agent_lin'
             }
