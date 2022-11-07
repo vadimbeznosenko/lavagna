@@ -1,10 +1,7 @@
 pipeline {
     agent none
 
-environment {
-            CI = true
-            ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
-  }
+
 
     stages {
         stage ('Build on Windows'){
@@ -49,6 +46,10 @@ environment {
             agent {
                 label 'agent_lin'
             }
+            environment {
+            CI = true
+            ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
+  }
             steps {
                 dir('/var/lib/jenkins/workspace/test_maven_main_2/build/win64/') {
                 unstash 'binarywin'
