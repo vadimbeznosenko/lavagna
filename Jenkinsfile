@@ -2,7 +2,6 @@ pipeline {
     agent {label 'agent_win'}
 
 environment {
-            CI = true
             ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
   }
 
