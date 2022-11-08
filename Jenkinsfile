@@ -4,7 +4,7 @@ pipeline {
 environment {
             ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
   }
-
+options { disableConcurrentBuilds() }
     stages {
         stage ('Build on Windows'){
             agent {
