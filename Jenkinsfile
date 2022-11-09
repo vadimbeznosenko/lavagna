@@ -12,7 +12,7 @@ options { disableConcurrentBuilds() }
             }
                tools{
         maven '3.5.0'
-        jdk 'Java_8'
+        jdk 'Java_9'
             }
 
             steps {
