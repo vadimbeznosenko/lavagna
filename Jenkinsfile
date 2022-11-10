@@ -1,20 +1,23 @@
 pipeline {
     agent {label 'agent_win'}
 
-environment {
-            ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
-  }
 options { disableConcurrentBuilds() }
     stages {
         stage ('Build on Windows'){
             agent {
                 label 'agent_win'
             }
-               tools{
-        maven '3.5.0'
-        jdk 'Java_9'
-            }
+        environment {
+                
+            TOOL = tool name: 'apache-maven-3.5.0-win', 
+            type:     'com.cloudbees.jenkins.plugins.customtools.CustomTool'
+            
+            TOOL = tool name: 'openlogic-openjdk-8u352-b08-windows', 
+            type:     'com.cloudbees.jenkins.plugins.customtools.CustomTool'
+              
+            ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
 
+            }
             steps {
                 bat "mvn clean"
                 bat "mvn package"
@@ -35,8 +38,18 @@ options { disableConcurrentBuilds() }
         maven '3.5.0'
         jdk 'openlogic-openjdk-8u342-b07-linux'
             }
+            environment {
+
+            TOOL = tool name: 'apache-maven-3.5.0-lin', 
+            type:     'com.cloudbees.jenkins.plugins.customtools.CustomTool'
+
+            TOOL = tool name: 'java/jdk-8u202-linux', 
+            type:     'com.cloudbees.jenkins.plugins.customtools.CustomTool'
+              
+            ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
+
+            }
             steps {
-                sh "PATH=$PATH:$JAVA_HOME/bin"
                 sh 'mvn clean'
                 sh 'mvn package'
                 zip zipFile: "/var/lib/jenkins/workspace/test_maven_main_2/build/lin64/lin${BUILD_NUMBER}.zip", glob : '/var/lib/jenkins/workspace/test_maven_main_2/target/lavagna-jetty-console.war', overwrite : true
