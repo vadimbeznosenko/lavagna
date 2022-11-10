@@ -9,10 +9,10 @@ options { disableConcurrentBuilds() }
             }
         environment {
                 
-            TOOL = tool name: 'apache-maven-3.5.0-win', 
+            TOOL1 = tool name: 'apache-maven-3.5.0-win', 
             type:     'com.cloudbees.jenkins.plugins.customtools.CustomTool'
-            
-            TOOL = tool name: 'openlogic-openjdk-8u352-b08-windows', 
+
+            TOOL2 = tool name: 'openlogic-openjdk-8u352-b08-windows', 
             type:     'com.cloudbees.jenkins.plugins.customtools.CustomTool'
               
             ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
@@ -40,10 +40,10 @@ options { disableConcurrentBuilds() }
             }
             environment {
 
-            TOOL = tool name: 'apache-maven-3.5.0-lin', 
+            TOOL3 = tool name: 'apache-maven-3.5.0-lin', 
             type:     'com.cloudbees.jenkins.plugins.customtools.CustomTool'
 
-            TOOL = tool name: 'java/jdk-8u202-linux', 
+            TOOL4 = tool name: 'java/jdk-8u202-linux', 
             type:     'com.cloudbees.jenkins.plugins.customtools.CustomTool'
               
             ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
