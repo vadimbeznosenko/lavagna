@@ -15,10 +15,10 @@ options { disableConcurrentBuilds() }
             JAVA_HOME = tool name: 'openlogic-openjdk-8u352-b08-windows', 
             type:     'com.cloudbees.jenkins.plugins.customtools.CustomTool'
               
-            ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
 
             }
             steps {
+                bat "set PATH="C:\jenkins\tools\com.cloudbees.jenkins.plugins.customtools.CustomTool\apache-maven-3.5.0-win\apache-maven-3.5.0\bin";%PATH%"
                 bat "set"
                 bat "mvn package"
                 zip zipFile: "win${BUILD_NUMBER}.zip",  glob : 'C:\\jenkins\\workspace\\test_maven_main_2\\target\\lavagna-jetty-console.war'
