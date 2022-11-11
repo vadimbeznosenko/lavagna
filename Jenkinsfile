@@ -9,7 +9,8 @@ options { disableConcurrentBuilds() }
             }
             steps {
                 withEnv (["PATH+MAVEN=${tool 'apache-maven-3.5.0-win'}/bin",
-                "JAVA_HOME=${tool 'openlogic-openjdk-8u352-b08-windows'}"]) {
+                "JAVA_HOME=${tool 'openlogic-openjdk-8u352-b08-windows'}",
+                "MAVEN_HOME=${tool 'apache-maven-3.5.0-win'}"]) {
                
                 bat "set JAVA_HOME"
                 bat "set MAVEN_HOME"
