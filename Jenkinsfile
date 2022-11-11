@@ -7,13 +7,15 @@ options { disableConcurrentBuilds() }
             agent {
                 label 'agent_win'
             }
+  
 
             steps {
-    withEnv (["PATH+GRADLE=${tool 'apache-maven-3.5.0-win'}/bin"]) {
-    
-    bat 'mvn deploy'
-    }
-}            
+                withEnv (["PATH+MAVEN=${tool 'apache-maven-3.5.0-win'}/bin"]) {
+                bat "mvn package"
+                zip zipFile: "win${BUILD_NUMBER}.zip",  glob : 'C:\\jenkins\\workspace\\test_maven_main_2\\target\\lavagna-jetty-console.war'
+                stash includes: "win${BUILD_NUMBER}.zip", name: 'binarywin'
+} 
+            }           
         post { 
         always { 
             cleanWs()
