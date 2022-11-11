@@ -69,5 +69,4 @@ options { disableConcurrentBuilds() }
             }
 
 }
-    }
 }
