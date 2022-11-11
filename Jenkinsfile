@@ -19,7 +19,7 @@ options { disableConcurrentBuilds() }
 
             }
             steps {
-                bat "ls env:"
+                bat "set"
                 bat "mvn package"
                 zip zipFile: "win${BUILD_NUMBER}.zip",  glob : 'C:\\jenkins\\workspace\\test_maven_main_2\\target\\lavagna-jetty-console.war'
                 stash includes: "win${BUILD_NUMBER}.zip", name: 'binarywin'
