@@ -11,9 +11,6 @@ options { disableConcurrentBuilds() }
                 withEnv (["PATH+MAVEN=${tool 'apache-maven-3.5.0-win'}/bin",
                 "JAVA_HOME=${tool 'openlogic-openjdk-8u352-b08-windows'}",
                 "MAVEN_HOME=${tool 'apache-maven-3.5.0-win'}"]) {
-               
-                bat "set JAVA_HOME"
-                bat "set MAVEN_HOME"
                 
                 bat "mvn clean"
                 bat "mvn package"
@@ -39,9 +36,6 @@ options { disableConcurrentBuilds() }
                 "JAVA_HOME=${tool 'java/jdk-8u202-linux'}",
                 "MAVEN_HOME=${tool 'apache-maven-3.5.0-lin'}"]){
 
-                sh "echo $JAVA_HOME"
-                sh "echo $MAVEN_HOME"
-                sh "echo $PATH"    
                 sh 'mvn clean'
                 sh 'mvn package'
 
@@ -57,17 +51,14 @@ options { disableConcurrentBuilds() }
             agent {label 'agent_lin'}
 
             options { skipDefaultCheckout()}
-            
+
             environment {ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')}
 
             steps {
             
-            sh "echo ${WORKSPACE}"
-
             dir("${WORKSPACE}/build/win64/") {
             unstash 'binarywin'
                 }
-            sh "echo $ARTIFACTORY_ACCESS_TOKEN"
 
             sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN   build/lin64/lin${BUILD_NUMBER}.zip  SNAPSHOTS/"
             sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN   build/win64/win${BUILD_NUMBER}.zip  SNAPSHOTS/"
