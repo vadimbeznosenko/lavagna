@@ -14,6 +14,8 @@ options { disableConcurrentBuilds() }
                
                 bat "set JAVA_HOME"
                 bat "set MAVEN_HOME"
+                
+                bat "mvn clean"
                 bat "mvn package"
                
                 zip zipFile: "win${BUILD_NUMBER}.zip",
@@ -65,7 +67,7 @@ options { disableConcurrentBuilds() }
             unstash 'binarywin'
                 }
             sh "echo $ARTIFACTORY_ACCESS_TOKEN"
-            
+
             sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN   build/lin64/lin${BUILD_NUMBER}.zip  SNAPSHOTS/"
             sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN   build/win64/win${BUILD_NUMBER}.zip  SNAPSHOTS/"
             }
