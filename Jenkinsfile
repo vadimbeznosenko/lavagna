@@ -17,7 +17,7 @@ options { disableConcurrentBuilds() }
                 bat "mvn package"
                
                 zip zipFile: "win${BUILD_NUMBER}.zip",
-                glob : 'C:\\jenkins\\workspace\\test_maven_main_2\\target\\lavagna-jetty-console.war',
+                glob : "${WORKSPACE}\\target\\lavagna-jetty-console.war",
                 overwrite : true
                
                 stash includes: "win${BUILD_NUMBER}.zip",
@@ -43,8 +43,8 @@ options { disableConcurrentBuilds() }
                 sh 'mvn clean'
                 sh 'mvn package'
 
-                zip zipFile: "/var/lib/jenkins/workspace/test_maven_main_2/build/lin64/lin${BUILD_NUMBER}.zip",
-                glob : '/var/lib/jenkins/workspace/test_maven_main_2/target/lavagna-jetty-console.war',
+                zip zipFile: "${WORKSPACE}/build/lin64/lin${BUILD_NUMBER}.zip",
+                glob : "${WORKSPACE}/target/lavagna-jetty-console.war",
                 overwrite : true
             }
 
@@ -59,7 +59,7 @@ options { disableConcurrentBuilds() }
             steps {
             withEnv (["ARTIFACTORY_ACCESS_TOKEN=${credentials 'artifactory-access-token'}"]){
             sh "echo ${WORKSPACE}"
-            dir('/var/lib/jenkins/workspace/${WORKSPACE}/build/win64/') {
+            dir("${WORKSPACE}/build/win64/") {
             unstash 'binarywin'
                 }
 
