@@ -55,6 +55,7 @@ options { disableConcurrentBuilds() }
             agent {
                 label 'agent_lin'
             }
+            options { skipDefaultCheckout()}
             steps {
             withEnv ([ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')]){
 
