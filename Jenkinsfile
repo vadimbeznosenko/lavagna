@@ -7,16 +7,11 @@ options { disableConcurrentBuilds() }
             agent {
                 label 'agent_win'
             }
-        environment {
-                
-            MAVEN_HOME = tool name: 'apache-maven-3.5.0-win', 
-            type:     'com.cloudbees.jenkins.plugins.customtools.CustomTool'
 
-            JAVA_HOME = tool name: 'openlogic-openjdk-8u352-b08-windows', 
-            type:     'com.cloudbees.jenkins.plugins.customtools.CustomTool'
-              
+   withEnv(["PATH=${tool 'apache-maven-3.5.0-win'}/bin:${tool 'openlogic-openjdk-8u352-b08-windows'}/bin:${env.PATH}"]) {
+    bat 'mvn deploy'
+    }
 
-            }
             steps {
                 bat 'set path'
                 bat "set MAVEN_HOME"
