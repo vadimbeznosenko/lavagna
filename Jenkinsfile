@@ -9,7 +9,8 @@ options { disableConcurrentBuilds() }
             }
 
             steps {
-    withEnv(["PATH=${tool 'apache-maven-3.5.0-win'}/bin:${tool 'openlogic-openjdk-8u352-b08-windows'}/bin:${env.PATH}"]) {
+    withEnv (["PATH+GRADLE=${tool 'apache-maven-3.5.0-win'}/bin"]) {
+    
     bat 'mvn deploy'
     }
 }            
