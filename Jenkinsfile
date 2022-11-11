@@ -8,16 +8,10 @@ options { disableConcurrentBuilds() }
                 label 'agent_win'
             }
 
-   withEnv(["PATH=${tool 'apache-maven-3.5.0-win'}/bin:${tool 'openlogic-openjdk-8u352-b08-windows'}/bin:${env.PATH}"]) {
+            steps {
+    withEnv(["PATH=${tool 'apache-maven-3.5.0-win'}/bin:${tool 'openlogic-openjdk-8u352-b08-windows'}/bin:${env.PATH}"]) {
     bat 'mvn deploy'
     }
-
-            steps {
-                bat 'set path'
-                bat "set MAVEN_HOME"
-                bat "mvn package"
-                zip zipFile: "win${BUILD_NUMBER}.zip",  glob : 'C:\\jenkins\\workspace\\test_maven_main_2\\target\\lavagna-jetty-console.war'
-                stash includes: "win${BUILD_NUMBER}.zip", name: 'binarywin'
 }            
         post { 
         always { 
