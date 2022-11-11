@@ -9,10 +9,10 @@ options { disableConcurrentBuilds() }
             }
         environment {
                 
-            TOOL1 = tool name: 'apache-maven-3.5.0-win', 
+            MAVEN_HOME = tool name: 'apache-maven-3.5.0-win', 
             type:     'com.cloudbees.jenkins.plugins.customtools.CustomTool'
 
-            TOOL2 = tool name: 'openlogic-openjdk-8u352-b08-windows', 
+            JAVA_HOME = tool name: 'openlogic-openjdk-8u352-b08-windows', 
             type:     'com.cloudbees.jenkins.plugins.customtools.CustomTool'
               
             ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
