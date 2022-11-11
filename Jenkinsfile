@@ -4,9 +4,7 @@ pipeline {
 options { disableConcurrentBuilds() }
     stages {
         stage ('Build on Windows'){
-            agent {
-                label 'agent_win'
-            }
+            agent {label 'agent_win'}
             steps {
                 withEnv (["PATH+MAVEN=${tool 'apache-maven-3.5.0-win'}/bin",
                 "JAVA_HOME=${tool 'openlogic-openjdk-8u352-b08-windows'}",
