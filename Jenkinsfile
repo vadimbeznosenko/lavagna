@@ -14,7 +14,7 @@ options { disableConcurrentBuilds() }
                
                 bat "set JAVA_HOME"
                 bat "set MAVEN_HOME"
-
+                
                 bat "mvn clean"
                 bat "mvn package"
                
@@ -57,18 +57,20 @@ options { disableConcurrentBuilds() }
             agent {label 'agent_lin'}
 
             options { skipDefaultCheckout()}
+            
+            environment {ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')}
 
             steps {
-            withEnv (["ARTIFACTORY_ACCESS_TOKEN=${credentials 'artifactory-access-token'}"]){
             
             sh "echo ${WORKSPACE}"
 
             dir("${WORKSPACE}/build/win64/") {
             unstash 'binarywin'
                 }
-            sh "echo ${ARTIFACTORY_ACCESS_TOKEN}"
+            sh "echo $ARTIFACTORY_ACCESS_TOKEN"
 
-            }
+            sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN   build/lin64/lin${BUILD_NUMBER}.zip  SNAPSHOTS/"
+            sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN   build/win64/win${BUILD_NUMBER}.zip  SNAPSHOTS/"
             }
         post {
         always {
