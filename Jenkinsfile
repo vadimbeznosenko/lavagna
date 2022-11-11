@@ -18,7 +18,7 @@ options { disableConcurrentBuilds() }
 
             }
             steps {
-                bat 'echo %PATH%'
+                bat 'set path
                 bat "echo %M2_HOME%"
                 bat "mvn package"
                 zip zipFile: "win${BUILD_NUMBER}.zip",  glob : 'C:\\jenkins\\workspace\\test_maven_main_2\\target\\lavagna-jetty-console.war'
