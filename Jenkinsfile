@@ -37,7 +37,7 @@ options { disableConcurrentBuilds() }
             steps {
                 withEnv (["PATH+MAVEN=${tool 'apache-maven-3.5.0-lin'}/bin",
                 "JAVA_HOME=${tool 'java/jdk-8u202-linux'}",
-                "MAVEN_HOME=${tool 'apache-maven-3.5.0-win'}"]){
+                "MAVEN_HOME=${tool 'apache-maven-3.5.0-lin'}"]){
 
                 sh 'mvn clean'
                 sh 'mvn package'
