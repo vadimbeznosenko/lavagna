@@ -35,8 +35,9 @@ options { disableConcurrentBuilds() }
                 label 'agent_lin'
             }
             steps {
-                withEnv (["PATH+MAVEN=${tool 'apache-maven-3.5.0-win'}/bin",
-                "JAVA_HOME=${tool 'openlogic-openjdk-8u352-b08-windows'}"]){
+                withEnv (["PATH+MAVEN=${tool 'apache-maven-3.5.0-lin'}/bin",
+                "JAVA_HOME=${tool 'java/jdk-8u202-linux'},
+                "MAVEN_HOME=${tool 'apache-maven-3.5.0-win'}"]){
 
                 sh 'mvn clean'
                 sh 'mvn package'
