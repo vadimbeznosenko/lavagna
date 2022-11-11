@@ -31,13 +31,12 @@ options { disableConcurrentBuilds() }
         }
             }
         stage ('Build on Linux') {
-            agent {
-                label 'agent_lin'
-            }
+            agent {label 'agent_lin'}
             steps {
                 withEnv (["PATH+MAVEN=${tool 'apache-maven-3.5.0-lin'}/bin",
                 "JAVA_HOME=${tool 'java/jdk-8u202-linux'}",
                 "MAVEN_HOME=${tool 'apache-maven-3.5.0-lin'}"]){
+
                 sh "echo $JAVA_HOME"
                 sh "echo $MAVEN_HOME"
                 sh "echo $PATH"    
@@ -52,14 +51,14 @@ options { disableConcurrentBuilds() }
         }
         }
         stage ('Deploy artifact') {
-            agent {
-                label 'agent_lin'
-            }
+            
+            agent {label 'agent_lin'}
 
             options { skipDefaultCheckout()}
 
             steps {
             withEnv (["ARTIFACTORY_ACCESS_TOKEN=${credentials 'artifactory-access-token'}"]){
+            sh "ls
             dir('/var/lib/jenkins/workspace/test_maven_main_2/build/win64/') {
             unstash 'binarywin'
                 }
