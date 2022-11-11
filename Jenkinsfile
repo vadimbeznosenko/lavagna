@@ -66,7 +66,7 @@ options { disableConcurrentBuilds() }
             dir("${WORKSPACE}/build/win64/") {
             unstash 'binarywin'
                 }
-            sh "echo $ARTIFACTORY_ACCESS_TOKEN"
+            sh "echo ${ARTIFACTORY_ACCESS_TOKEN}"
 
             }
             }
