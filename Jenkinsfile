@@ -55,9 +55,11 @@ options { disableConcurrentBuilds() }
             agent {
                 label 'agent_lin'
             }
+
             options { skipDefaultCheckout()}
+
             steps {
-            withEnv ([ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')]){
+            withEnv (["ARTIFACTORY_ACCESS_TOKEN = ${credentials 'artifactory-access-token'}"]){
 
             dir('/var/lib/jenkins/workspace/test_maven_main_2/build/win64/') {
             unstash 'binarywin'
