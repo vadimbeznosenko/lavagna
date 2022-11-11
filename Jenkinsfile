@@ -58,8 +58,8 @@ options { disableConcurrentBuilds() }
 
             steps {
             withEnv (["ARTIFACTORY_ACCESS_TOKEN=${credentials 'artifactory-access-token'}"]){
-            sh "ls
-            dir('/var/lib/jenkins/workspace/test_maven_main_2/build/win64/') {
+            sh "echo ${WORKSPACE}"
+            dir('/var/lib/jenkins/workspace/${WORKSPACE}/build/win64/') {
             unstash 'binarywin'
                 }
 
