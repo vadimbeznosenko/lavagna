@@ -35,14 +35,13 @@ pipeline {
                 sh 'mvn clean'
                 sh 'mvn package'
             }
-        }
+
 
             stage ('Deploy artifact') {
             agent {
                 label 'agent_lin'
             }
                         environment {
-            CI = true
             ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
   }
             steps {
