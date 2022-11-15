@@ -42,6 +42,7 @@ pipeline {
                 label 'agent_lin'
             }
                         environment {
+
             ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
   }
             steps {
