@@ -15,11 +15,11 @@ pipeline {
                 bat "mvn package"
                 zip zipFile: "win${BUILD_NUMBER}.zip",  glob : 'C:\\jenkins\\workspace\\test_maven_main_2\\target\\lavagna-jetty-console.war'
                 stash includes: "win${BUILD_NUMBER}.zip", name: 'binarywin'
-}       
-        }    
+}          
         post { 
         always { 
             cleanWs()
+        }
         }
         }
         stage ('Build on Linux') {
@@ -36,7 +36,7 @@ pipeline {
                 sh 'mvn package'
             }
 
-
+        }
             stage ('Deploy artifact') {
             agent {
                 label 'agent_lin'
