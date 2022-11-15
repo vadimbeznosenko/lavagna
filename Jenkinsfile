@@ -22,7 +22,6 @@ pipeline {
             cleanWs()
         }
         }
-            }
         stage ('Build on Linux') {
             agent {
                 label 'agent_lin'
