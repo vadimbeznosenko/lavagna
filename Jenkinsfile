@@ -6,9 +6,10 @@ options { disableConcurrentBuilds() }
         stage ('Build on Windows'){
             agent {label 'agent_win'}
             steps {
-                withEnv (["PATH+MAVEN=${tool 'apache-maven-3.5.0-win'}/bin",
-                "JAVA_HOME=${tool 'openlogic-openjdk-8u352-b08-windows'}",
-                "MAVEN_HOME=${tool 'apache-maven-3.5.0-win'}"]) {
+
+            withMaven(
+            jdk: 'openlogic-openjdk-8u352-b08-windows',
+            maven: 'apache-maven-3.5.0-win')  {
                 
                 bat "mvn clean"
                 bat "mvn package"
@@ -30,9 +31,11 @@ options { disableConcurrentBuilds() }
         stage ('Build on Linux') {
             agent {label 'agent_lin'}
             steps {
-                withEnv (["PATH+MAVEN=${tool 'apache-maven-3.5.0-lin'}/bin",
-                "JAVA_HOME=${tool 'java/jdk-8u202-linux'}",
-                "MAVEN_HOME=${tool 'apache-maven-3.5.0-lin'}"]){
+
+            withMaven(
+            jdk: 'java/jdk-8u202-linux', 
+            maven: 'apache-maven-3.5.0-lin') 
+{
 
                 sh 'mvn clean'
                 sh 'mvn package'
