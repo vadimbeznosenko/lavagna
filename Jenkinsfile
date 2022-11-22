@@ -11,7 +11,6 @@ options { disableConcurrentBuilds() }
             jdk: 'openlogic-openjdk-8u352-b08-windows',
             maven: 'apache-maven-3.5.0-win')  {
                 
-                bat "mvn clean"
                 bat "mvn package"
                
                 zip zipFile: "win${BUILD_NUMBER}.zip",
@@ -37,7 +36,6 @@ options { disableConcurrentBuilds() }
             maven: 'apache-maven-3.5.0-lin') 
 {
 
-                sh 'mvn clean'
                 sh 'mvn package'
 
                 zip zipFile: "${WORKSPACE}/build/lin64/lin${BUILD_NUMBER}.zip",
