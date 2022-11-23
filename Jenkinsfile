@@ -18,7 +18,7 @@ options { disableConcurrentBuilds() }
                
 }
             stash includes:"${JOB_NAME}win${BUILD_NUMBER}.zip",
-            name: 'win'
+            name: "${JOB_NAME}"
             }
         post {
         always {
