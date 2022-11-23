@@ -13,12 +13,11 @@ options { disableConcurrentBuilds() }
                 
                 bat "mvn package"
                
-                zip zipFile: "win${BUILD_NUMBER}.zip",
+                zip zipFile: "${JOB_NAME}win${BUILD_NUMBER}.zip",
                 glob : "${WORKSPACE}\\target\\lavagna-jetty-console.war",
-                overwrite : true
                
-                stash includes: "win${BUILD_NUMBER}.zip",
-                name: 'binarywin'
+                stash includes: "${JOB_NAME}win${BUILD_NUMBER}.zip",
+                name: "${JOB_NAME}"
 }
             }
         post {
@@ -37,8 +36,9 @@ options { disableConcurrentBuilds() }
 {
 
                 sh 'mvn package'
+                sh "ls -la ${WORKSPACE}/target/"
 
-                zip zipFile: "${WORKSPACE}/build/lin64/lin${BUILD_NUMBER}.zip",
+                zip zipFile: "${WORKSPACE}/build/${JOB_NAME}lin${BUILD_NUMBER}.zip",
                 glob : "${WORKSPACE}/target/lavagna-jetty-console.war",
                 overwrite : true
             }
@@ -55,12 +55,12 @@ options { disableConcurrentBuilds() }
 
             steps {
             
-            dir("${WORKSPACE}/build/win64/") {
-            unstash 'binarywin'
+            dir("${WORKSPACE}/build/") {
+            unstash "${JOB_NAME}"
                 }
 
-            sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN   build/lin64/lin${BUILD_NUMBER}.zip  SNAPSHOTS/"
-            sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN   build/win64/win${BUILD_NUMBER}.zip  SNAPSHOTS/"
+            sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN   ${WORKSPACE}/build/${JOB_NAME}lin${BUILD_NUMBER}.zip SNAPSHOTS/"
+            sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN   ${WORKSPACE}/build/${JOB_NAME}win${BUILD_NUMBER}.zip  SNAPSHOTS/"
             }
         post {
         always {
