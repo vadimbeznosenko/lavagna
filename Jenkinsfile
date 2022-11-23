@@ -16,8 +16,7 @@ options { disableConcurrentBuilds() }
                 zip zipFile: "${JOB_NAME}win${BUILD_NUMBER}.zip",
                 glob : "${WORKSPACE}\\target\\lavagna-jetty-console.war",
                
-            stash includes:"${JOB_NAME}win${BUILD_NUMBER}.zip",
-            name: "${JOB_NAME}"
+                stash includes:"${JOB_NAME}win${BUILD_NUMBER}.zip", name: "${JOB_NAME}"
             }
             }
         post {
