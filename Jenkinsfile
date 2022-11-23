@@ -17,7 +17,7 @@ options { disableConcurrentBuilds() }
                 glob : "${WORKSPACE}\\target\\lavagna-jetty-console.war",
                
                 stash includes: "${JOB_NAME}win${BUILD_NUMBER}.zip",
-                name: "${JOB_NAME}"
+                name: 'win'
 }
             }
         post {
@@ -56,7 +56,7 @@ options { disableConcurrentBuilds() }
             steps {
             
             dir("${WORKSPACE}/build/") {
-            unstash "${JOB_NAME}"
+            unstash 'win'
                 }
 
             sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token $ARTIFACTORY_ACCESS_TOKEN   ${WORKSPACE}/build/${JOB_NAME}lin${BUILD_NUMBER}.zip SNAPSHOTS/"
