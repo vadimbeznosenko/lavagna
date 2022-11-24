@@ -17,7 +17,7 @@ options { disableConcurrentBuilds() }
                 glob : "${WORKSPACE}\\target\\lavagna-jetty-console.war",
 
                 stash includes: "win_${JOB_NAME}:v${BUILD_NUMBER}.zip",
-                name: "${JOB_NAME}"
+                name: 'lavaga'
             }
             }
         post {
