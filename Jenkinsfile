@@ -5,20 +5,18 @@ options { disableConcurrentBuilds() }
     stages {
         stage ('Build on Windows'){
             agent {label 'agent_win'}
-            steps {
 
             withMaven(
             jdk: 'openlogic-openjdk-8u352-b08-windows',
-            maven: 'apache-maven-3.5.0-win')  {
-
+            maven: 'apache-maven-3.5.0-win')  
+            
+            {
                 mvn 'clean install'
-
                 zip zipFile: "win_${JOB_NAME}:v${BUILD_NUMBER}.zip",
                 glob : "${WORKSPACE}\\target\\lavagna-jetty-console.war",
 
-                stash includes: "win${BUILD_NUMBER}.zip",
-                name: 'binarywin'
-            }
+                stash includes: "win_${JOB_NAME}:v${BUILD_NUMBER}.zip",
+                name: ""${JOB_NAME}""
             }
         post {
         always {
