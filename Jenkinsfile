@@ -39,7 +39,7 @@ options { disableConcurrentBuilds() }
                 sh "ls -la ${WORKSPACE}/target/"
 
                 zip zipFile: "${WORKSPACE}/build/lin_${JOB_NAME}:v${BUILD_NUMBER}.zip",
-                glob : "${WORKSPACE}/target/lavagna-jetty-console.war",
+                glob : "${WORKSPACE}/target/lavagna-jetty-console.war"
 }
 
             }
