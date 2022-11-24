@@ -38,7 +38,7 @@ options { disableConcurrentBuilds() }
                 mvn 'clean install'
                 sh "ls -la ${WORKSPACE}/target/"
 
-                zip zipFile: "${WORKSPACE}/build/${JOB_NAME}_lin:v${BUILD_NUMBER}.zip.zip",
+                zip zipFile: "${WORKSPACE}/build/${JOB_NAME}_lin:v${BUILD_NUMBER}.zip",
                 glob : "${WORKSPACE}/target/lavagna-jetty-console.war"
 }
 
