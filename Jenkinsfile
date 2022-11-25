@@ -7,15 +7,18 @@ options { disableConcurrentBuilds() }
             agent {label 'agent_win'}
             steps {
 
-                withMaven(globalMavenSettingsConfig: 'null', 
-                jdk: 'openlogic-openjdk-8u352-b08-windows', 
-                maven: 'apache-maven-3.5.0-win', mavenSettingsConfig: 'null') {
-                    
-                bat 'mvn clean'
-                bat 'mvn package'
+            withMaven(
+            jdk: 'openlogic-openjdk-8u352-b08-windows',
+            maven: 'apache-maven-3.5.0-win',
+            options: [junitPublisher(disabled: true),
+            openTasksPublisher(disabled: true)]){
+                
+                bat "mvn clean"
+                bat "mvn package"
 
                 zip zipFile: "${BUILD_DISPLAY_NAME}_win:v${BUILD_NUMBER}.zip",
                 glob : "${WORKSPACE}\\target\\lavagna-jetty-console.war"
+                overwrite : true
 
                 stash includes: "${BUILD_DISPLAY_NAME}_win:v${BUILD_NUMBER}.zip",
                 name: 'lavaga'
