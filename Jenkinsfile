@@ -55,7 +55,7 @@ options { disableConcurrentBuilds() }
 
             rtUpload (
                     // Obtain an Artifactory server instance, defined in Jenkins --> Manage Jenkins --> Configure System:
-                    serverId: SERVER_ID,
+                    serverId: artifactory,
                     spec: """{
                             "files": [
                                     {
