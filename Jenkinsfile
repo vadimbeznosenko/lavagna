@@ -14,11 +14,11 @@ options { disableConcurrentBuilds() }
                 bat "mvn clean"
                 bat "mvn package"
                
-                zip zipFile: "${BUILD_DISPLAY_NAME}_win:v${BUILD_NUMBER}.zip",
+                zip zipFile: "${BUILD_DISPLAY_NAME}_win${BUILD_NUMBER}.zip",
                 glob : "${WORKSPACE}\\target\\lavagna-jetty-console.war",
                 overwrite : true
                
-                stash includes: "${BUILD_DISPLAY_NAME}_win:v${BUILD_NUMBER}.zip",
+                stash includes: "${BUILD_DISPLAY_NAME}_win${BUILD_NUMBER}.zip",
                 name: 'binarywin'
 }
             }
