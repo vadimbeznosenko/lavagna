@@ -19,8 +19,8 @@ options { disableConcurrentBuilds() }
                 overwrite : true
 
                 stash includes: "${BUILD_DISPLAY_NAME}_win${BUILD_NUMBER}.zip",
-                name: 'lavaga'
-            }
+                name: "${BUILD_NUMBER}"          
+                }
             }
         post {
         always {
@@ -54,7 +54,7 @@ options { disableConcurrentBuilds() }
             steps {
 
             dir("${WORKSPACE}/build/") {
-            unstash "${JOB_NAME}"
+            unstash "${BUILD_NUMBER}"
             }
 
             withCredentials([[
