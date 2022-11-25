@@ -48,8 +48,6 @@ s
 
             agent {label 'agent_lin'}
 
-            options { skipDefaultCheckout()}
-
             steps {
 
             dir("${WORKSPACE}/build/") {
