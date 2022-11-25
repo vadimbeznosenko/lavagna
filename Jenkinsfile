@@ -10,7 +10,8 @@ options { disableConcurrentBuilds() }
             withMaven(
             jdk: 'openlogic-openjdk-8u352-b08-windows',
             maven: 'apache-maven-3.5.0-win',
-            options: [junitPublisher(disabled: true)]){
+            options: [junitPublisher(disabled: true),
+            openTasksPublisher(disabled: true)]){
                 
                 bat 'mvn clean'
                 bat 'mvn package'
