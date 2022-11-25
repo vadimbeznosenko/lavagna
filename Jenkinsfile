@@ -47,13 +47,13 @@ options { disableConcurrentBuilds() }
 
             agent {label 'agent_lin'}
 
+            options { skipDefaultCheckout()}
+            
             steps {
 
             dir("${WORKSPACE}/build/") {
             unstash "${BUILD_NUMBER}"
             }
-            
-            options { skipDefaultCheckout()}
 
             withCredentials([[
             credentialsId: 'artifactory-access-token',
