@@ -11,12 +11,10 @@ options { disableConcurrentBuilds() }
             jdk: 'openlogic-openjdk-8u352-b08-windows',
             maven: 'apache-maven-3.5.0-win'){
                 
-                bat "mvn clean"
                 bat "mvn package"
 
                 zip zipFile: "${BUILD_DISPLAY_NAME}_win${BUILD_NUMBER}.zip",
-                glob : "${WORKSPACE}\\target\\lavagna-jetty-console.war",
-                overwrite : true
+                glob : "${WORKSPACE}\\target\\lavagna-jetty-console.war"
 
                 stash includes: "${BUILD_DISPLAY_NAME}_win${BUILD_NUMBER}.zip",
                 name: "lavaga"
@@ -48,7 +46,6 @@ options { disableConcurrentBuilds() }
             agent {label 'agent_lin'}
 
             options { skipDefaultCheckout()}
-environment {ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')}
 
             steps {
 
