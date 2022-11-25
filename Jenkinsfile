@@ -65,6 +65,7 @@ options { disableConcurrentBuilds() }
                                 ]
                             }"""
                 )
+            }
         post {
         always {
             cleanWs()
