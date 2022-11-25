@@ -19,7 +19,7 @@ options { disableConcurrentBuilds() }
                 overwrite : true
 
                 stash includes: "${BUILD_DISPLAY_NAME}_win${BUILD_NUMBER}.zip",
-                name: "${BUILD_NUMBER}"          
+                name: "${BUILD_NUMBER}"
                 }
             }
         post {
@@ -28,10 +28,9 @@ options { disableConcurrentBuilds() }
         }
         }
         }
-        stage ('Build on Linux') {
+       stage ('Build on Linux') {
             agent {label 'agent_lin'}
             steps {
-
             withMaven(
             jdk: 'java/jdk-8u202-linux',
             maven: 'apache-maven-3.5.0-lin')
@@ -39,12 +38,9 @@ options { disableConcurrentBuilds() }
 
                 sh 'mvn package'
 
-                sh "ls -la ${WORKSPACE}/target/"
-
                 zip zipFile: "${WORKSPACE}/build/${BUILD_DISPLAY_NAME}_lin${BUILD_NUMBER}.zip",
                 glob : "${WORKSPACE}/target/lavagna-jetty-console.war"
 }
-
             }
         }
         stage ('Deploy artifact') {
