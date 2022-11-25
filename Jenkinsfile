@@ -13,10 +13,10 @@ options { disableConcurrentBuilds() }
 
                 bat 'mvn package'
 
-                zip zipFile: "${JOB_NAME}_win:v${BUILD_NUMBER}.zip",
+                zip zipFile: "${BUILD_DISPLAY_NAME}_win:v${BUILD_NUMBER}.zip",
                 glob : "${WORKSPACE}\\target\\lavagna-jetty-console.war"
 
-                stash includes: "${JOB_NAME}_win:v${BUILD_NUMBER}.zip",
+                stash includes: "${BUILD_DISPLAY_NAME}_win:v${BUILD_NUMBER}.zip",
                 name: "${JOB_NAME}"
             }
             }
@@ -39,7 +39,7 @@ options { disableConcurrentBuilds() }
 
                 sh "ls -la ${WORKSPACE}/target/"
 
-                zip zipFile: "${WORKSPACE}/build/${JOB_NAME}_lin:v${BUILD_NUMBER}.zip",
+                zip zipFile: "${WORKSPACE}/build/${BUILD_DISPLAY_NAME}_lin:v${BUILD_NUMBER}.zip",
                 glob : "${WORKSPACE}/target/lavagna-jetty-console.war"
 }
 
