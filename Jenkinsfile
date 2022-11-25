@@ -7,12 +7,10 @@ options { disableConcurrentBuilds() }
             agent {label 'agent_win'}
             steps {
 
-            withMaven(
-            jdk: 'openlogic-openjdk-8u352-b08-windows',
-            maven: 'apache-maven-3.5.0-win',
-            options: [junitPublisher(disabled: true),
-            openTasksPublisher(disabled: true)]){
-                
+                withMaven(globalMavenSettingsConfig: 'null', 
+                jdk: 'openlogic-openjdk-8u352-b08-windows', 
+                maven: 'apache-maven-3.5.0-win', mavenSettingsConfig: 'null') {
+                    
                 bat 'mvn clean'
                 bat 'mvn package'
 
