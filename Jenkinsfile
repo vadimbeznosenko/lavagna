@@ -11,7 +11,7 @@ options { disableConcurrentBuilds() }
             jdk: 'openlogic-openjdk-8u352-b08-windows',
             maven: 'apache-maven-3.5.0-win'){
                 
-                mvn "clean install"
+                bat "mvn package"
 
                 zip zipFile: "${BUILD_DISPLAY_NAME}_win${BUILD_NUMBER}.zip",
                 glob : "${WORKSPACE}\\target\\lavagna-jetty-console.war"
@@ -53,13 +53,17 @@ options { disableConcurrentBuilds() }
             unstash "${BUILD_NUMBER}"
             }
 
-             withCredentials([string(
-            credentialsId: 'artifactory-access-token',
-            variable: 'ARTIFACTORY_ACCESS_TOKEN'
-           )]){
-            sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token ${ARTIFACTORY_ACCESS_TOKEN} ${WORKSPACE}/build/${BUILD_DISPLAY_NAME}_lin${BUILD_NUMBER}.zip SNAPSHOTS/"
-            sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token ${ARTIFACTORY_ACCESS_TOKEN} ${WORKSPACE}/build/${BUILD_DISPLAY_NAME}_win${BUILD_NUMBER}.zip SNAPSHOTS/"
-            }
+            rtUpload (
+                    serverId: artifactory,
+                    spec: """{
+                            "files": [
+                                    {
+                                        "pattern": "${WORKSPACE}/build/*.zip",
+                                        "target": "SNAPSHOTS"
+                                    }
+                                ]
+                            }"""
+                )
             }
         post {
         always {
