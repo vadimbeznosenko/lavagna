@@ -10,7 +10,6 @@ options { disableConcurrentBuilds() }
             withMaven(
             jdk: 'openlogic-openjdk-8u352-b08-windows',
             maven: 'apache-maven-3.5.0-win'){
-s
                 mvn "clean install"
 
                 zip zipFile: "${JOB_NAME}_win:v${BUILD_NUMBER}.zip",
