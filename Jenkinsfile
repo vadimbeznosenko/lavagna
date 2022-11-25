@@ -19,7 +19,7 @@ options { disableConcurrentBuilds() }
                 overwrite : true
 
                 stash includes: "${BUILD_DISPLAY_NAME}_win${BUILD_NUMBER}.zip",
-                name: "${BUILD_NUMBER}"
+                name: "lavaga"
                 }
             }
         post {
@@ -48,11 +48,11 @@ options { disableConcurrentBuilds() }
             agent {label 'agent_lin'}
 
             options { skipDefaultCheckout()}
-            
+
             steps {
 
             dir("${WORKSPACE}/build/") {
-            unstash "${BUILD_NUMBER}"
+            unstash "lavaga"
             }
 
             withCredentials([[
