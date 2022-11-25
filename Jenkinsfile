@@ -53,13 +53,18 @@ options { disableConcurrentBuilds() }
             unstash "${BUILD_NUMBER}"
             }
 
-             withCredentials([string(
-            credentialsId: 'artifactory-access-token',
-            variable: 'ARTIFACTORY_ACCESS_TOKEN'
-           )]){
-            sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token ${ARTIFACTORY_ACCESS_TOKEN} ${WORKSPACE}/build/ SNAPSHOTS/ --regexp --exclusions=(.*)install.*pack$"
-            }
-            }
+            rtUpload (
+                    // Obtain an Artifactory server instance, defined in Jenkins --> Manage Jenkins --> Configure System:
+                    serverId: SERVER_ID,
+                    spec: """{
+                            "files": [
+                                    {
+                                        "pattern": "${WORKSPACE}/build/*.zip ",
+                                        "target": "SNAPSHOTS"
+                                    }
+                                ]
+                            }"""
+                )
         post {
         always {
             cleanWs()
