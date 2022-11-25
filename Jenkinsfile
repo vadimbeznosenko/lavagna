@@ -52,6 +52,8 @@ options { disableConcurrentBuilds() }
             dir("${WORKSPACE}/build/") {
             unstash "${BUILD_NUMBER}"
             }
+            
+            options { skipDefaultCheckout()}
 
             withCredentials([[
             credentialsId: 'artifactory-access-token',
