@@ -11,7 +11,7 @@ options { disableConcurrentBuilds() }
             jdk: 'openlogic-openjdk-8u352-b08-windows',
             maven: 'apache-maven-3.5.0-win'){
 
-                mvn 'clean install'
+                mvn "clean install"
 
                 zip zipFile: "${JOB_NAME}_win:v${BUILD_NUMBER}.zip",
                 glob : "${WORKSPACE}\\target\\lavagna-jetty-console.war"
