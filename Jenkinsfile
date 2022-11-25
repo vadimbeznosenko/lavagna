@@ -57,8 +57,7 @@ options { disableConcurrentBuilds() }
             credentialsId: 'artifactory-access-token',
             variable: 'ARTIFACTORY_ACCESS_TOKEN'
            )]){
-            sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token ${ARTIFACTORY_ACCESS_TOKEN} ${WORKSPACE}/build/${BUILD_DISPLAY_NAME}_lin${BUILD_NUMBER}.zip SNAPSHOTS/"
-            sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token ${ARTIFACTORY_ACCESS_TOKEN} ${WORKSPACE}/build/${BUILD_DISPLAY_NAME}_win${BUILD_NUMBER}.zip SNAPSHOTS/"
+            sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token ${ARTIFACTORY_ACCESS_TOKEN} ${WORKSPACE}/build/*.zip SNAPSHOTS/"
             }
             }
         post {
