@@ -13,11 +13,11 @@ options { disableConcurrentBuilds() }
                 
                 bat "mvn package"
 
-                zip zipFile: "${JOB_NAME%%/*}_win${BUILD_NUMBER}.zip",
+                zip zipFile: "${JOB_NAME}_win${BUILD_NUMBER}.zip",
                 glob : "${WORKSPACE}\\target\\lavagna-jetty-console.war"
 
-                stash includes: "${JOB_NAME%%/*}_win${BUILD_NUMBER}.zip",
-                name: "${JOB_NAME%%/*}"
+                stash includes: "${JOB_NAME}_win${BUILD_NUMBER}.zip",
+                name: "${JOB_NAME}"
                 }
             }
         post {
@@ -36,7 +36,7 @@ options { disableConcurrentBuilds() }
 
                 sh 'mvn package'
 
-                zip zipFile: "${WORKSPACE}/build/${JOB_NAME%%/*}_lin${BUILD_NUMBER}.zip",
+                zip zipFile: "${WORKSPACE}/build/${JOB_NAME}_lin${BUILD_NUMBER}.zip",
                 glob : "${WORKSPACE}/target/lavagna-jetty-console.war"
 }
             }
@@ -57,8 +57,8 @@ options { disableConcurrentBuilds() }
             credentialsId: 'artifactory-access-token',
             variable: 'ARTIFACTORY_ACCESS_TOKEN'
            )]){
-            sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token ${ARTIFACTORY_ACCESS_TOKEN} ${WORKSPACE}/build/${JOB_NAME%%/*}_lin${BUILD_NUMBER}.zip SNAPSHOTS/"
-            sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token ${ARTIFACTORY_ACCESS_TOKEN} ${WORKSPACE}/build/${JOB_NAME%%/*}_win${BUILD_NUMBER}.zip SNAPSHOTS/"
+            sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token ${ARTIFACTORY_ACCESS_TOKEN} ${WORKSPACE}/build/${JOB_NAME}_lin${BUILD_NUMBER}.zip SNAPSHOTS/"
+            sh "jf rt upload --url http://192.168.31.13:8082/artifactory --access-token ${ARTIFACTORY_ACCESS_TOKEN} ${WORKSPACE}/build/${JOB_NAME}_win${BUILD_NUMBER}.zip SNAPSHOTS/"
             
             }
             }
