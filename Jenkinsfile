@@ -50,7 +50,7 @@ options { disableConcurrentBuilds() }
             steps {
 
             dir("${WORKSPACE}/build/") {
-            unstash "${JOB_NAME%%/*}"
+            unstash "${JOB_NAME}"
             }
 
              withCredentials([string(
