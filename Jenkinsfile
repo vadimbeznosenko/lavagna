@@ -17,7 +17,7 @@ options { disableConcurrentBuilds() }
                 glob : "${WORKSPACE}\\target\\lavagna-jetty-console.war"
 
                 stash includes: "${JOB_NAME}_win${BUILD_NUMBER}.zip",
-                name: "${JOB_NAME}"
+                name: "${BUILD_NUMBER}"
                 }
             }
         post {
@@ -50,7 +50,7 @@ options { disableConcurrentBuilds() }
             steps {
 
             dir("${WORKSPACE}/build/") {
-            unstash "${JOB_NAME}"
+            unstash "${BUILD_NUMBER}"
             }
 
              withCredentials([string(
