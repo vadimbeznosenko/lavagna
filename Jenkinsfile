@@ -1,5 +1,5 @@
 pipeline {
-    agent {label 'agent_win'}
+    agent none
 
 options { disableConcurrentBuilds() }
     stages {
